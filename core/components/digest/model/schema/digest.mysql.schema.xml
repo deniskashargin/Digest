@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model package="sendex" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="sendex" version="1.1">
+<model package="digest" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="digest" version="1.1">
 
-	<object class="sxNewsletter" table="sendex_newsletters" extends="xPDOSimpleObject">
+	<object class="sxNewsletter" table="digest_letters" extends="xPDOSimpleObject">
 		<field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
 		<field key="description" dbtype="text" phptype="text" null="true" default="" />
 		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="true" default="1" />
@@ -28,7 +28,7 @@
 	</object>
 
 
-	<object class="sxSubscriber" table="sendex_subscribers" extends="xPDOSimpleObject">
+	<object class="sxSubscriber" table="digest_subscribers" extends="xPDOSimpleObject">
 		<field key="newsletter_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
 		<field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="email" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
@@ -44,7 +44,7 @@
 	</object>
 
 
-	<object class="sxQueue" table="sendex_queue" extends="xPDOSimpleObject">
+	<object class="sxQueue" table="digest_queue" extends="xPDOSimpleObject">
 		<field key="newsletter_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
 		<field key="subscriber_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="timestamp" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP" />
