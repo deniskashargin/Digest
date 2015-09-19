@@ -1,6 +1,6 @@
 <?php
 
-/* define package */
+/* define package  r */
 define('PKG_NAME', 'Digest');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
 
