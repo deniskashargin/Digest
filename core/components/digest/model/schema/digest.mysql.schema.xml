@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model package="digest" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="digest" version="1.1">
 
-	<object class="sxNewsletter" table="digest_letters" extends="xPDOSimpleObject">
+	<object class="DigestLetter" table="digest_letters" extends="xPDOSimpleObject">
 		<field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
 		<field key="description" dbtype="text" phptype="text" null="true" default="" />
 		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" attributes="unsigned" null="true" default="1" />
@@ -22,30 +22,30 @@
 			<column key="active" length="" collation="A" null="false" />
 		</index>
 
-		<composite alias="Subscribers" class="sxSubscriber" local="id" foreign="newsletter_id" cardinality="many" owner="local" />
+		<composite alias="Subscribers" class="DigestSubscriber" local="id" foreign="letter_id" cardinality="many" owner="local" />
 		<aggregate alias="Template" class="modTemplate" local="template" foreign="id" cardinality="one" owner="foreign" />
 		<aggregate alias="Snippet" class="modSnippet" local="snippet" foreign="id" cardinality="one" owner="foreign" />
 	</object>
 
 
-	<object class="sxSubscriber" table="digest_subscribers" extends="xPDOSimpleObject">
-		<field key="newsletter_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+	<object class="DigestSubscriber" table="digest_subscribers" extends="xPDOSimpleObject">
+		<field key="letter_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
 		<field key="user_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="email" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
 
 		<index alias="key" name="key" primary="false" unique="true" type="BTREE">
-			<column key="newsletter_id" length="" collation="A" null="false" />
+			<column key="letter_id" length="" collation="A" null="false" />
 			<column key="user_id" length="" collation="A" null="false" />
 			<column key="email" length="" collation="A" null="false" />
 		</index>
 
-		<aggregate alias="Newsletter" class="sxNewsletter" local="newsletter_id" foreign="id" cardinality="one" owner="foreign" />
+		<aggregate alias="Newsletter" class="DigestLetter" local="letter_id" foreign="id" cardinality="one" owner="foreign" />
 		<aggregate alias="User" class="modUser" local="user_id" foreign="id" cardinality="one" owner="foreign" />
 	</object>
 
 
-	<object class="sxQueue" table="digest_queue" extends="xPDOSimpleObject">
-		<field key="newsletter_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+	<object class="DigestQueue" table="digest_queue" extends="xPDOSimpleObject">
+		<field key="letter_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
 		<field key="subscriber_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true" default="0" />
 		<field key="timestamp" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP" />
 
@@ -56,8 +56,8 @@
 		<field key="email_from_name" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
 		<field key="email_reply" dbtype="varchar" precision="255" phptype="string" null="true" default="" />
 
-		<index alias="newsletter_id" name="newsletter_id" primary="false" unique="false" type="BTREE">
-			<column key="newsletter_id" length="" collation="A" null="false" />
+		<index alias="letter_id" name="letter_id" primary="false" unique="false" type="BTREE">
+			<column key="letter_id" length="" collation="A" null="false" />
 		</index>
 		<index alias="user_id" name="user_id" primary="false" unique="false" type="BTREE">
 			<column key="user_id" length="" collation="A" null="false" />
@@ -66,8 +66,8 @@
 			<column key="timestamp" length="" collation="A" null="false" />
 		</index>
 
-		<aggregate alias="Newsletter" class="sxNewsletter" local="newsletter_id" foreign="id" cardinality="one" owner="foreign" />
-		<aggregate alias="Subscriber" class="sxSubscriber" local="subscriber_id" foreign="id" cardinality="one" owner="foreign" />
+		<aggregate alias="Newsletter" class="DigestLetter" local="letter_id" foreign="id" cardinality="one" owner="foreign" />
+		<aggregate alias="Subscriber" class="DigestSubscriber" local="subscriber_id" foreign="id" cardinality="one" owner="foreign" />
 	</object>
 
 </model>
