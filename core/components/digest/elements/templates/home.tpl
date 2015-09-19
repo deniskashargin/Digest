@@ -1,0 +1,1 @@
+<div id="digest-panel-home-div"></div>
