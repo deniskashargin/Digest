@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Update an Item
+ * Update an Newsletter
  */
-class DigestItemUpdateProcessor extends modObjectUpdateProcessor {
-	public $objectType = 'DigestItem';
-	public $classKey = 'DigestItem';
+class DigestNewsletterUpdateProcessor extends modObjectUpdateProcessor {
+	public $objectType = 'DigestNewsletter';
+	public $classKey = 'DigestNewsletter';
 	public $languageTopics = array('digest');
 	//public $permission = 'save';
 
@@ -32,18 +32,18 @@ class DigestItemUpdateProcessor extends modObjectUpdateProcessor {
 		$id = (int)$this->getProperty('id');
 		$name = trim($this->getProperty('name'));
 		if (empty($id)) {
-			return $this->modx->lexicon('digest_item_err_ns');
+			return $this->modx->lexicon('digest_newsletter_err_ns');
 		}
 
 		if (empty($name)) {
-			$this->modx->error->addField('name', $this->modx->lexicon('digest_item_err_name'));
+			$this->modx->error->addField('name', $this->modx->lexicon('digest_newsletter_err_name'));
 		}
 		elseif ($this->modx->getCount($this->classKey, array('name' => $name, 'id:!=' => $id))) {
-			$this->modx->error->addField('name', $this->modx->lexicon('digest_item_err_ae'));
+			$this->modx->error->addField('name', $this->modx->lexicon('digest_newsletter_err_ae'));
 		}
 
 		return parent::beforeSet();
 	}
 }
 
-return 'DigestItemUpdateProcessor';
+return 'DigestNewsletterUpdateProcessor';

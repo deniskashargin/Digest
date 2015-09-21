@@ -8,7 +8,7 @@ Digest.window.CreateItem = function (config) {
 		width: 550,
 		autoHeight: true,
 		url: Digest.config.connector_url,
-		action: 'mgr/item/create',
+		action: 'mgr/newsletter/create',
 		fields: this.getFields(config),
 		keys: [{
 			key: Ext.EventObject.ENTER, shift: true, fn: function () {
@@ -58,7 +58,7 @@ Digest.window.UpdateItem = function (config) {
 		width: 550,
 		autoHeight: true,
 		url: Digest.config.connector_url,
-		action: 'mgr/item/update',
+		action: 'mgr/newsletter/update',
 		fields: this.getFields(config),
 		keys: [{
 			key: Ext.EventObject.ENTER, shift: true, fn: function () {

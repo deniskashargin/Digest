@@ -1,7 +1,7 @@
-Digest.grid.Items = function (config) {
+Digest.grid.Newsletters = function (config) {
 	config = config || {};
 	if (!config.id) {
-		config.id = 'digest-grid-items';
+		config.id = 'digest-grid-newsletters';
 	}
 	Ext.applyIf(config, {
 		url: Digest.config.connector_url,
@@ -10,7 +10,7 @@ Digest.grid.Items = function (config) {
 		tbar: this.getTopBar(config),
 		sm: new Ext.grid.CheckboxSelectionModel(),
 		baseParams: {
-			action: 'mgr/item/getlist'
+			action: 'mgr/newsletter/getlist'
 		},
 		listeners: {
 			rowDblClick: function (grid, rowIndex, e) {
@@ -34,7 +34,7 @@ Digest.grid.Items = function (config) {
 		remoteSort: true,
 		autoHeight: true,
 	});
-	Digest.grid.Items.superclass.constructor.call(this, config);
+	Digest.grid.Newsletters.superclass.constructor.call(this, config);
 
 	// Clear selection on grid refresh
 	this.store.on('load', function () {
@@ -43,7 +43,7 @@ Digest.grid.Items = function (config) {
 		}
 	}, this);
 };
-Ext.extend(Digest.grid.Items, MODx.grid.Grid, {
+Ext.extend(Digest.grid.Newsletters, MODx.grid.Grid, {
 	windows: {},
 
 	getMenu: function (grid, rowIndex) {
@@ -57,7 +57,7 @@ Ext.extend(Digest.grid.Items, MODx.grid.Grid, {
 
 	createItem: function (btn, e) {
 		var w = MODx.load({
-			xtype: 'digest-item-window-create',
+			xtype: 'digest-newsletter-window-create',
 			id: Ext.id(),
 			listeners: {
 				success: {
@@ -84,14 +84,14 @@ Ext.extend(Digest.grid.Items, MODx.grid.Grid, {
 		MODx.Ajax.request({
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/get',
+				action: 'mgr/newsletter/get',
 				id: id
 			},
 			listeners: {
 				success: {
 					fn: function (r) {
 						var w = MODx.load({
-							xtype: 'digest-item-window-update',
+							xtype: 'digest-newsletter-window-update',
 							id: Ext.id(),
 							record: r,
 							listeners: {
@@ -118,14 +118,14 @@ Ext.extend(Digest.grid.Items, MODx.grid.Grid, {
 		}
 		MODx.msg.confirm({
 			title: ids.length > 1
-				? _('digest_items_remove')
-				: _('digest_item_remove'),
+				? _('digest_newsletters_remove')
+				: _('digest_newsletter_remove'),
 			text: ids.length > 1
-				? _('digest_items_remove_confirm')
-				: _('digest_item_remove_confirm'),
+				? _('digest_newsletters_remove_confirm')
+				: _('digest_newsletter_remove_confirm'),
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/remove',
+				action: 'mgr/newsletter/remove',
 				ids: Ext.util.JSON.encode(ids),
 			},
 			listeners: {
@@ -147,7 +147,7 @@ Ext.extend(Digest.grid.Items, MODx.grid.Grid, {
 		MODx.Ajax.request({
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/disable',
+				action: 'mgr/newsletter/disable',
 				ids: Ext.util.JSON.encode(ids),
 			},
 			listeners: {
@@ -168,7 +168,7 @@ Ext.extend(Digest.grid.Items, MODx.grid.Grid, {
 		MODx.Ajax.request({
 			url: this.config.url,
 			params: {
-				action: 'mgr/item/enable',
+				action: 'mgr/newsletter/enable',
 				ids: Ext.util.JSON.encode(ids),
 			},
 			listeners: {
@@ -187,22 +187,22 @@ Ext.extend(Digest.grid.Items, MODx.grid.Grid, {
 
 	getColumns: function (config) {
 		return [{
-			header: _('digest_item_id'),
+			header: _('digest_newsletter_id'),
 			dataIndex: 'id',
 			sortable: true,
 			width: 70
 		}, {
-			header: _('digest_item_name'),
+			header: _('digest_newsletter_name'),
 			dataIndex: 'name',
 			sortable: true,
 			width: 200,
 		}, {
-			header: _('digest_item_description'),
+			header: _('digest_newsletter_description'),
 			dataIndex: 'description',
 			sortable: false,
 			width: 250,
 		}, {
-			header: _('digest_item_active'),
+			header: _('digest_newsletter_active'),
 			dataIndex: 'active',
 			renderer: Digest.utils.renderBoolean,
 			sortable: true,
@@ -219,7 +219,7 @@ Ext.extend(Digest.grid.Items, MODx.grid.Grid, {
 
 	getTopBar: function (config) {
 		return [{
-			text: '<i class="icon icon-plus"></i>&nbsp;' + _('digest_item_create'),
+			text: '<i class="icon icon-plus"></i>&nbsp;' + _('digest_newsletter_create'),
 			handler: this.createItem,
 			scope: this
 		}, '->', {
@@ -293,4 +293,4 @@ Ext.extend(Digest.grid.Items, MODx.grid.Grid, {
 		this.refresh();
 	}
 });
-Ext.reg('digest-grid-items', Digest.grid.Items);
+Ext.reg('digest-grid-newsletters', Digest.grid.Newsletters);

@@ -3,8 +3,8 @@
 $chunks = array();
 
 $tmp = array(
-	'tpl.Digest.item' => array(
-		'file' => 'item',
+	'tpl.Digest.newsletter' => array(
+		'file' => 'newsletter',
 		'description' => '',
 	),
 );
