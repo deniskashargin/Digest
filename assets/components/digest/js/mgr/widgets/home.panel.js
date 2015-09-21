@@ -20,13 +20,13 @@ Digest.panel.Home = function (config) {
 			border: true,
 			hideMode: 'offsets',
 			items: [{
-				title: _('digest_newsletters'),
+				title: _('digest_letters'),
 				layout: 'anchor',
 				items: [{
-					html: _('digest_newsletters_intro'),
+					html: _('digest_letters_intro'),
 					cls: 'panel-desc',
 				}, {
-					xtype: 'digest-grid-newsletters',
+					xtype: 'digest-grid-letters',
 					cls: 'main-wrapper',
 				}]
 			}]

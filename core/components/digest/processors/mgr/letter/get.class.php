@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Get an Newsletter
+ * Get an Letter
  */
-class DigestNewsletterGetProcessor extends modObjectGetProcessor {
-	public $objectType = 'DigestNewsletter';
-	public $classKey = 'DigestNewsletter';
+class DigestLetterGetProcessor extends modObjectGetProcessor {
+	public $objectType = 'DigestLetter';
+	public $classKey = 'DigestLetter';
 	public $languageTopics = array('digest:default');
 	//public $permission = 'view';
 
@@ -26,4 +26,4 @@ class DigestNewsletterGetProcessor extends modObjectGetProcessor {
 
 }
 
-return 'DigestNewsletterGetProcessor';
+return 'DigestLetterGetProcessor';

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Disable an Newsletter
+ * Disable an Letter
  */
-class DigestNewsletterDisableProcessor extends modObjectProcessor {
-	public $objectType = 'DigestNewsletter';
-	public $classKey = 'DigestNewsletter';
+class DigestLetterDisableProcessor extends modObjectProcessor {
+	public $objectType = 'DigestLetter';
+	public $classKey = 'DigestLetter';
 	public $languageTopics = array('digest');
 	//public $permission = 'save';
 
@@ -20,13 +20,13 @@ class DigestNewsletterDisableProcessor extends modObjectProcessor {
 
 		$ids = $this->modx->fromJSON($this->getProperty('ids'));
 		if (empty($ids)) {
-			return $this->failure($this->modx->lexicon('digest_newsletter_err_ns'));
+			return $this->failure($this->modx->lexicon('digest_letter_err_ns'));
 		}
 
 		foreach ($ids as $id) {
-			/** @var DigestNewsletter $object */
+			/** @var DigestLetter $object */
 			if (!$object = $this->modx->getObject($this->classKey, $id)) {
-				return $this->failure($this->modx->lexicon('digest_newsletter_err_nf'));
+				return $this->failure($this->modx->lexicon('digest_letter_err_nf'));
 			}
 
 			$object->set('active', false);
@@ -38,4 +38,4 @@ class DigestNewsletterDisableProcessor extends modObjectProcessor {
 
 }
 
-return 'DigestNewsletterDisableProcessor';
+return 'DigestLetterDisableProcessor';

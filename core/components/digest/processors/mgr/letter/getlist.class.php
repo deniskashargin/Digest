@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Get a list of Newsletters
+ * Get a list of Letter
  */
-class DigestNewsletterGetListProcessor extends modObjectGetListProcessor {
-	public $objectType = 'DigestNewsletter';
-	public $classKey = 'DigestNewsletter';
+class DigestLetterGetListProcessor extends modObjectGetListProcessor {
+	public $objectType = 'DigestLetter';
+	public $classKey = 'DigestLetter';
 	public $defaultSortField = 'id';
 	public $defaultSortDirection = 'DESC';
 	//public $permission = 'list';
@@ -57,9 +57,9 @@ class DigestNewsletterGetListProcessor extends modObjectGetListProcessor {
 		$array['actions'][] = array(
 			'cls' => '',
 			'icon' => 'icon icon-edit',
-			'title' => $this->modx->lexicon('digest_newsletter_update'),
+			'title' => $this->modx->lexicon('digest_letter_update'),
 			//'multiple' => $this->modx->lexicon('digest_items_update'),
-			'action' => 'updateNewsletter',
+			'action' => 'updateLetter',
 			'button' => true,
 			'menu' => true,
 		);
@@ -68,9 +68,9 @@ class DigestNewsletterGetListProcessor extends modObjectGetListProcessor {
 			$array['actions'][] = array(
 				'cls' => '',
 				'icon' => 'icon icon-power-off action-green',
-				'title' => $this->modx->lexicon('digest_newsletter_enable'),
-				'multiple' => $this->modx->lexicon('digest_newsletters_enable'),
-				'action' => 'enableNewsletter',
+				'title' => $this->modx->lexicon('digest_letter_enable'),
+				'multiple' => $this->modx->lexicon('digest_letters_enable'),
+				'action' => 'enableLetter',
 				'button' => true,
 				'menu' => true,
 			);
@@ -79,9 +79,9 @@ class DigestNewsletterGetListProcessor extends modObjectGetListProcessor {
 			$array['actions'][] = array(
 				'cls' => '',
 				'icon' => 'icon icon-power-off action-gray',
-				'title' => $this->modx->lexicon('digest_newsletter_disable'),
-				'multiple' => $this->modx->lexicon('digest_newsletters_disable'),
-				'action' => 'disableNewsletter',
+				'title' => $this->modx->lexicon('digest_letter_disable'),
+				'multiple' => $this->modx->lexicon('digest_letters_disable'),
+				'action' => 'disableLetter',
 				'button' => true,
 				'menu' => true,
 			);
@@ -91,9 +91,9 @@ class DigestNewsletterGetListProcessor extends modObjectGetListProcessor {
 		$array['actions'][] = array(
 			'cls' => '',
 			'icon' => 'icon icon-trash-o action-red',
-			'title' => $this->modx->lexicon('digest_newsletter_remove'),
-			'multiple' => $this->modx->lexicon('digest_newsletters_remove'),
-			'action' => 'removeItem',
+			'title' => $this->modx->lexicon('digest_letter_remove'),
+			'multiple' => $this->modx->lexicon('digest_letters_remove'),
+			'action' => 'removeLetter',
 			'button' => true,
 			'menu' => true,
 		);
@@ -103,4 +103,4 @@ class DigestNewsletterGetListProcessor extends modObjectGetListProcessor {
 
 }
 
-return 'DigestNewsletterGetListProcessor';
+return 'DigestLetterGetListProcessor';
